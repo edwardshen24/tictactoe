@@ -38,4 +38,8 @@
 
 #cell{
     border: 1px solid #D1D5DB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
 }
