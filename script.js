@@ -1,4 +1,5 @@
 const board = document.querySelector(".gameboard");
+const container = document.querySelector(".container");
 
 (function gameBoard(){ //module
     let gameBoard = [1,2,3,4,5,6,7,8,9];
@@ -13,6 +14,7 @@ const board = document.querySelector(".gameboard");
 (function displayController(){ //module
     let previous = new Set();
     let n = 0
+
     board.addEventListener('click', e => {
         let i = parseInt(e.target.getAttribute('data-index'));
         console.log(i)
@@ -35,16 +37,26 @@ const board = document.querySelector(".gameboard");
         }
         checkWin();
     });
+
+    
 })();
 
 
 
 function checkWin(){
-    const winarr = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,6,7]]
+    const winarr = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
     let checker = (arr, target) => target.every(i => arr.includes(i));
+    const winner = document.createElement("div");
 
     winarr.forEach(function (n) {
-        console.log(checker(n,player1.cell))
+        if(checker(player1.cell, n)){
+            winner.innerHTML = "Player 1 wins."
+            container.appendChild(winner);
+        }
+        else if (checker(player2.cell, n)){
+            winner.innerHTML = "Player 2 wins."
+            container.appendChild(winner);
+        }
     });
 }
 
