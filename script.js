@@ -1,5 +1,11 @@
 const board = document.querySelector(".gameboard");
-const container = document.querySelector(".container");
+
+const createPlayer = (piece, cell, turn) => { //factory function
+    return { piece, cell, turn};
+};
+
+const player1 = createPlayer("x",[], true);
+const player2 = createPlayer("o",[], false);
 
 (function gameBoard(){ //module
     let gameBoard = [1,2,3,4,5,6,7,8,9];
@@ -18,7 +24,7 @@ const container = document.querySelector(".container");
     board.addEventListener('click', e => {
         let i = parseInt(e.target.getAttribute('data-index'));
         console.log(i)
-        if (((Array.from(previous)).indexOf(i) == -1 || n == 0) && i != null){
+        if (((Array.from(previous)).indexOf(i) == -1 || n == 0) && i !== null && !isNaN(i)){
             if (player1.turn ){
                 e.target.innerHTML = player1.piece;
                 player1.cell.push(i);
@@ -41,29 +47,25 @@ const container = document.querySelector(".container");
     
 })();
 
-
-
 function checkWin(){
     const winarr = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]];
     let checker = (arr, target) => target.every(i => arr.includes(i));
-    const winner = document.createElement("div");
+    let display = document.querySelector(".display");
 
     winarr.forEach(function (n) {
         if(checker(player1.cell, n)){
-            winner.innerHTML = "Player 1 wins."
-            container.appendChild(winner);
+            display.innerHTML = "Player 1 wins."
+            restart();
         }
         else if (checker(player2.cell, n)){
-            winner.innerHTML = "Player 2 wins."
-            container.appendChild(winner);
+            display.innerHTML = "Player 2 wins."
+            restart();
         }
     });
+
 }
 
-const createPlayer = (piece, cell, turn) => { //factory function
-    return { piece, cell, turn};
-};
+function restart(){
 
-const player1 = createPlayer("x",[], true);
-const player2 = createPlayer("o",[], false);
+}
 
