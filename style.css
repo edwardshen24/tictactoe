@@ -28,13 +28,14 @@
 
 .gameboard{
     display:absolute;
-    margin-top: 150px;
+    margin-top: 100px;
     height: 400px;
     width: 400px;
     border:solid black 1px;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3,1fr);
+    box-shadow: 3px 3px 3px #9CA3AF;
 }
 
 #cell{
@@ -43,10 +44,11 @@
     justify-content: center;
     align-items: center;
     font-size: 100px;
+    cursor: pointer;
 }
 
 .display{
-    margin-top: 25px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,5 +65,10 @@
     border-radius: 5px;
     border: none;
     cursor:pointer;
+    background-color: #22C55E;
+    box-shadow: 3px 3px 3px #9CA3AF;
 }
 
+#restart:hover{
+    background-color: #16A34A;
+}
